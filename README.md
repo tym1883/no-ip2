@@ -26,8 +26,21 @@ Running the image as a regular container uses environment variables to pass user
 
 
 ```bash
-docker container run -d -e USERNAME=user1 -e PASSWORD=123 -e "DOMAINS=domain1.ddns.net" -e INTERVAL=5 aanousakis/no-ip
+docker  run -d --name tym-ddns --restart=always  -e USERNAME=user1 -e PASSWORD=123 -e "DOMAINS=domain1.ddns.net" -e INTERVAL=5 aanousakis/no-ip
 
+
+举个例子:
+docker  run -d --name tym-ddns --restart=always -e USERNAME=111993393816@qq.com -e PASSWORD=xxxxxxxxx -e "DOMAINS=xxxxxx.ddns.net" -e INTERVAL=5 aanousakis/no-ip
+
+命令参数说明:
+--name tym-ddns  #容器的名字.
+--restart=always #容器不管在什么情况下.都自动启动.
+-e USERNAME=111993393816@qq.com  #noip 的账号.就是你在网页登录的时候的账号.
+-e PASSWORD=xxxxxxxxx   #noip 的密码.就是你在网页登录的时候的密码. 这里注意:是明文的密码.
+-e "DOMAINS=xxxxxx.ddns.net"     #  xxxxxx.ddns.net 就是你需要更新ip地址的域名.
+-e INTERVAL=5     #更新间隔时间.单位是分钟.一般是5分钟就可以了.
+aanousakis/no-ip  #镜像名称. 就是你想要使用哪个镜像 来生成名字是tym-ddns容器.重点是镜像.
+docker logs xxx		#xxx 为容器的名字.也可以是容器的ID.  这条命令可以查看容器运行的日志.查看容器成功与否.
 ```
 You can add multiple domains ex "DOMAINS=domain1.ddns.net domain2.ddns.net domain.foo.com"
 
