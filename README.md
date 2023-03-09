@@ -7,7 +7,7 @@
 - [3.16](https://github.com/aanousakis/no-ip/blob/3.16/Dockerfile)
 
 
-# NO-IP Dynamic DNS Update Client
+# 使用容器更新 NO-IP域名ip地址
 
 A simple [Docker container](https://hub.docker.com/r/aanousakis/no-ip) for running the NO-IP dynamic DNS update script. It will keep current IP address in sync with your No-IP host or domain.
 
@@ -52,32 +52,3 @@ First you have to install docker compose
 
 Then download docker-compose.yml file and the scripts to set Docker secrets. 
 
-```bash
-git clone https://github.com/aanousakis/no-ip.git    
-cd no-ip/
-```
-
-Then you can deploy the service with :
-
-
-```bash
-docker swarm init
-./deploy.sh 
-```
-The deploy.sh script will ask for your username, password, domains and update interval. Then it will set the secrets and start a service called no-ip_service. 
-
-The service if configured to restart if an error occurs.
-
-
-### Building the image
-The image in Docker hub is build for the x86_64 architecture and cannot run on other platforms. If, for example, you want to run it on a host with arm architecture, you must build the image in that host.
-
-```bash
-git clone https://github.com/aanousakis/no-ip.git    
-cd no-ip/
-docker build --tag=aanousakis/no-ip .
-
-```
-## Author
-
-* **Antony Anousakis**
