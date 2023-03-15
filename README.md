@@ -25,17 +25,19 @@ Running the image as a regular container uses environment variables to pass user
 
 
 ```bash
-docker  run -d --name tym-ddns --restart=always  -e USERNAME=user1 -e PASSWORD=123 -e "DOMAINS=domain1.ddns.net" -e INTERVAL=5 aanousakis/no-ip
+docker  run -d --name tym-ddns --restart=always  -e USERNAME=user1 -e "PASSWORD=123" -e "DOMAINS=domain1.ddns.net" -e INTERVAL=5 aanousakis/no-ip
 
 
 举个例子:
-docker  run -d --name tym-ddns --restart=always -e USERNAME=111993393816@qq.com -e PASSWORD=xxxxxxxxx -e "DOMAINS=xxxxxx.ddns.net" -e INTERVAL=5 aanousakis/no-ip
+docker  run -d --name tym-ddns --restart=always -e USERNAME=111993393816@qq.com -e "PASSWORD=12345\$H9e4" -e "DOMAINS=xxxxxx.ddns.net" -e INTERVAL=5 aanousakis/no-ip
 
 命令参数说明:
 --name tym-ddns                       #容器的名字.
 --restart=always                      #容器不管在什么情况下.都自动启动.
 -e USERNAME=111993393816@qq.com       #noip 的账号.就是你在网页登录的时候的账号.
 -e PASSWORD=xxxxxxxxx                 #noip 的密码.就是你在网页登录的时候的密码. 这里注意:是明文的密码.
+                                      #如果密码里面包含$ 字符.需要使用在前面加个\转义符.举个例子:密码是:12345$H9e4.要写成 -e PASSWORD=12345\$H9e4.
+                                      #还有密码这里需要使用双引号引起来. -e "PASSWORD=12345\$H9e4"
 -e "DOMAINS=xxxxxx.ddns.net"          #  xxxxxx.ddns.net 就是你需要更新ip地址的域名.
 -e INTERVAL=5                         #更新间隔时间.单位是分钟.一般是5分钟就可以了.
 aanousakis/no-ip                      #镜像名称. 就是你想要使用哪个镜像 来生成名字是tym-ddns容器.重点是镜像.
